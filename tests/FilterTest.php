@@ -16,18 +16,17 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	{
 		$filter = new Filter();
 
-		$this->assertTrue($filter->int(0) === 0);
-		$this->assertTrue($filter->int("") === false);
-		$this->assertTrue($filter->int(1) === 1);
-		$this->assertTrue($filter->int(1.0) === 1);
-		$this->assertTrue($filter->int(1.1) === false);
-		$this->assertTrue($filter->int(1, 2) === false);
-		$this->assertTrue($filter->int(5, 2, 4) === false);
-		$this->assertTrue($filter->int(1.1) === false);
-		$this->assertTrue($filter->int("1") === 1);
-		$this->assertTrue($filter->int("1.0") === false);
-		$this->assertTrue($filter->int(" 1a ") === false);
-		$this->assertTrue($filter->int("a") === false);
+		$this->assertSame(0, $filter->int(0));
+		$this->assertSame(false, $filter->int(""));
+		$this->assertSame(1, $filter->int(1));
+		$this->assertSame(1, $filter->int(1.0));
+		$this->assertSame(false, $filter->int(1.1));
+		$this->assertSame(false, $filter->int(1, 2));
+		$this->assertSame(false, $filter->int(5, 2, 4));
+		$this->assertSame(1, $filter->int("1"));
+		$this->assertSame(false, $filter->int("1.0"));
+		$this->assertSame(false, $filter->int("1a"));
+		$this->assertSame(77, $filter->int("hi", false, false, 77));
 	}
 
 	public function testStrings()

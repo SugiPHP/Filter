@@ -14,12 +14,19 @@ namespace SugiPHP\Filter;
 class Filter
 {
 	/**
+	 * Encoding used in multibyte string functions.
+	 *
+	 * @var string
+	 */
+	public $encoding = "UTF-8";
+
+	/**
 	 * Validates integer value.
 	 *
-	 * @param  mixed $value - integer or string
+	 * @param  mixed   $value - integer or string
 	 * @param  integer $min
 	 * @param  integer $max
-	 * @param  mixed $default - this is what will be returned if the filter fails
+	 * @param  mixed   $default - this is what will be returned if the filter fails
 	 * @return mixed
 	 */
 	public function int($value, $min = false, $max = false, $default = false)
@@ -41,19 +48,19 @@ class Filter
 	/**
 	 * Validates string value.
 	 *
-	 * @param  string $value
+	 * @param  string  $value
 	 * @param  integer $minLength
-	 * @param  mixed $maxLength
-	 * @param  mixed $default
+	 * @param  mixed   $maxLength
+	 * @param  mixed   $default
 	 * @return mixed
 	 */
 	public function str($value, $minLength = 0, $maxLength = false, $default = false)
 	{
 		$value = trim($value);
-		if (!empty($minLength) && (mb_strlen($value, "UTF-8") < $minLength)) return $default;
-		if (!empty($maxLength) && (mb_strlen($value, "UTF-8") > $maxLength)) return $default;
+		if (!empty($minLength) && (mb_strlen($value, $this->encoding) < $minLength)) return $default;
+		if (!empty($maxLength) && (mb_strlen($value, $this->encoding) > $maxLength)) return $default;
 
-		return (string)$value;
+		return (string) $value;
 	}
 
 	/**
