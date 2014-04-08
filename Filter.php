@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    SugiPHP
- * @subpackage Sugi
+ * @subpackage Filter
  * @author     Plamen Popov <tzappa@gmail.com>
  * @license    http://opensource.org/licenses/mit-license.php (MIT License)
  */
@@ -26,8 +26,8 @@ class Filter
 	{
 		$options = array("options" => array());
 		if (isset($default)) $options["options"]["default"] = $default;
-		if (!is_null($min) AND ($min !== false)) $options["options"]["min_range"] = $min;
-		if (!is_null($max) AND ($max !== false)) $options["options"]["max_range"] = $max;
+		if (!is_null($min) && ($min !== false)) $options["options"]["min_range"] = $min;
+		if (!is_null($max) && ($max !== false)) $options["options"]["max_range"] = $max;
 
 		// We really DO NOT need to validate user inputs like 010 or 0x10
 		// If in the code we use something like $this->int(010) this is the
@@ -50,8 +50,8 @@ class Filter
 	public function str($value, $minLength = 0, $maxLength = false, $default = false)
 	{
 		$value = trim($value);
-		if (!empty($minLength) AND (mb_strlen($value, "UTF-8") < $minLength)) return $default;
-		if (!empty($maxLength) AND (mb_strlen($value, "UTF-8") > $maxLength)) return $default;
+		if (!empty($minLength) && (mb_strlen($value, "UTF-8") < $minLength)) return $default;
+		if (!empty($maxLength) && (mb_strlen($value, "UTF-8") > $maxLength)) return $default;
 
 		return (string)$value;
 	}
@@ -117,7 +117,7 @@ class Filter
 			return $default;
 		}
 
-		return ( ! $checkMxRecord OR checkdnsrr($dom, "MX")) ? $value : $default;
+		return ( ! $checkMxRecord || checkdnsrr($dom, "MX")) ? $value : $default;
 	}
 
 	/**
@@ -145,7 +145,7 @@ class Filter
 	 */
 	public function key($key, $array, $default = null)
 	{
-		return (isset($array) and is_array($array) and array_key_exists($key, $array)) ? $array[$key] : $default;
+		return (isset($array) && is_array($array) && array_key_exists($key, $array)) ? $array[$key] : $default;
 	}
 
 	/**

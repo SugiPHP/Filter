@@ -1,0 +1,22 @@
+{
+    "name": "sugiphp/filter",
+    "type": "library",
+    "description": "Filter helper functions",
+    "keywords": ["filter"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Plamen Popov",
+            "email": "tzappa@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "SugiPHP\\Filter\\": ""
+        }
+    },
+    "minimum-stability": "dev"
+}
