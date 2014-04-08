@@ -234,7 +234,7 @@ class Filter
 	 * @param  mixed $default - default value will be returned when validation fails
 	 * @return mixed
 	 */
-	static function strCookie($key, $minLength = 0, $maxLength = false, $default = false)
+	public function strCookie($key, $minLength = 0, $maxLength = false, $default = false)
 	{
 		return $this->str($this->cookie($key), $minLength, $maxLength, $default);
 	}
@@ -248,7 +248,7 @@ class Filter
 	 * @param  mixed $default - default value will be returned when validation fails
 	 * @return mixed
 	 */
-	static function strSession($key, $minLength = 0, $maxLength = false, $default = false)
+	public function strSession($key, $minLength = 0, $maxLength = false, $default = false)
 	{
 		return $this->str($this->session($key), $minLength, $maxLength, $default);
 	}
@@ -262,7 +262,7 @@ class Filter
 	 * @param  mixed $default - default value will be returned when validation fails
 	 * @return mixed
 	 */
-	static function plainGet($key, $minLength = 0, $maxLength = false, $default = false)
+	public function plainGet($key, $minLength = 0, $maxLength = false, $default = false)
 	{
 		return $this->plain($this->get($key), $minLength, $maxLength, $default);
 	}
@@ -276,7 +276,7 @@ class Filter
 	 * @param  mixed $default - default value will be returned when validation fails
 	 * @return mixed
 	 */
-	static function plainPost($key, $minLength = 0, $maxLength = false, $default = false)
+	public function plainPost($key, $minLength = 0, $maxLength = false, $default = false)
 	{
 		return $this->plain($this->post($key), $minLength, $maxLength, $default);
 	}
@@ -290,7 +290,7 @@ class Filter
 	 * @param  mixed $default - default value will be returned when validation fails
 	 * @return mixed
 	 */
-	static function plainCookie($key, $minLength = 0, $maxLength = false, $default = false)
+	public function plainCookie($key, $minLength = 0, $maxLength = false, $default = false)
 	{
 		return $this->plain($this->cookie($key), $minLength, $maxLength, $default);
 	}
@@ -304,7 +304,7 @@ class Filter
 	 * @param  mixed $default - default value will be returned when validation fails
 	 * @return mixed
 	 */
-	static function plainSession($key, $minLength = 0, $maxLength = false, $default = false)
+	public function plainSession($key, $minLength = 0, $maxLength = false, $default = false)
 	{
 		return $this->plain($this->session($key), $minLength, $maxLength, $default);
 	}
@@ -319,7 +319,7 @@ class Filter
 	 *         or default value of failure
 	 * @return mixed
 	 */
-	static function intGet($key, $min_range = false, $max_range = false, $default = false)
+	public function intGet($key, $min_range = false, $max_range = false, $default = false)
 	{
 		return $this->int($this->get($key), $min_range, $max_range, $default);
 	}
@@ -334,7 +334,7 @@ class Filter
 	 *         or default value of failure
 	 * @return mixed
 	 */
-	static function intPost($key, $min_range = false, $max_range = false, $default = false)
+	public function intPost($key, $min_range = false, $max_range = false, $default = false)
 	{
 		return $this->int($this->post($key), $min_range, $max_range, $default);
 	}
@@ -349,7 +349,7 @@ class Filter
 	 *         or default value of failure
 	 * @return mixed
 	 */
-	static function intCookie($key, $min_range = false, $max_range = false, $default = false)
+	public function intCookie($key, $min_range = false, $max_range = false, $default = false)
 	{
 		return $this->int($this->cookie($key), $min_range, $max_range, $default);
 	}
@@ -364,7 +364,7 @@ class Filter
 	 *         or default value of failure
 	 * @return mixed
 	 */
-	static function intSession($key, $min_range = false, $max_range = false, $default = false)
+	public function intSession($key, $min_range = false, $max_range = false, $default = false)
 	{
 		return $this->int($this->session($key), $min_range, $max_range, $default);
 	}
