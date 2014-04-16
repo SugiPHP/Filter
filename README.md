@@ -1,6 +1,8 @@
 Filter
 ======
 
+[![Build Status](https://travis-ci.org/SugiPHP/Filter.png)](https://travis-ci.org/SugiPHP/Filter)
+
 Simple filter helper functions.
 
 Integers
