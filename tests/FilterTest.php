@@ -1,10 +1,10 @@
 <?php
 /**
- * @package  SugiPHP
+ * @package    SugiPHP
  * @subpackage Filter
- * @category tests
- * @author   Plamen Popov <tzappa@gmail.com>
- * @license  http://opensource.org/licenses/mit-license.php (MIT License)
+ * @category   tests
+ * @author     Plamen Popov <tzappa@gmail.com>
+ * @license    http://opensource.org/licenses/mit-license.php (MIT License)
  */
 
 use SugiPHP\Filter\Filter;
@@ -33,22 +33,21 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	{
 		$filter = new Filter();
 
-		$this->assertTrue($filter->str("a") === "a");
-		$this->assertTrue($filter->str("1") === "1");
-		$this->assertTrue($filter->str(1) === "1");
-		$this->assertTrue($filter->str(" a ") === "a");
-		$this->assertTrue($filter->str(" a ") === "a");
-		$this->assertTrue($filter->str("") === "");
-		$this->assertTrue($filter->str("", 1) === false);
-		$this->assertTrue($filter->str("a", 1) === "a");
-		$this->assertTrue($filter->str(" a ", 1) === "a");
-		$this->assertTrue($filter->str("ab", 1, 1) === false);
-		$this->assertTrue($filter->str("ab", 1, 2) === "ab");
-		$this->assertTrue($filter->str(" ab ", 1, 2) === "ab");
-		$this->assertTrue($filter->str(" abc ", 1, 2) === false);
-		$this->assertTrue($filter->str(" abc ", 1, 2, "error") === "error");
-		$this->assertTrue($filter->str("abc", 1, 2, "error") === "error");
-		$this->assertTrue($filter->str("abc", 1, false, "error") === "abc");
+		$this->assertSame("a", $filter->str("a"));
+		$this->assertSame("1", $filter->str("1"));
+		$this->assertSame("1", $filter->str(1));
+		$this->assertSame("a", $filter->str(" a "));
+		$this->assertSame("", $filter->str(""));
+		$this->assertSame(false, $filter->str("", 1));
+		$this->assertSame("a", $filter->str("a", 1));
+		$this->assertSame("a", $filter->str(" a ", 1));
+		$this->assertSame(false, $filter->str("ab", 1, 1));
+		$this->assertSame("ab", $filter->str("ab", 1, 2));
+		$this->assertSame("ab", $filter->str(" ab ", 1, 2));
+		$this->assertSame(false, $filter->str(" abc ", 1, 2));
+		$this->assertSame("error", $filter->str(" abc ", 1, 2, "error"));
+		$this->assertSame("error", $filter->str("abc", 1, 2, "error"));
+		$this->assertSame("abc", $filter->str("abc", 1, false, "error"));
 	}
 
 	/**
