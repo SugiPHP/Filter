@@ -1,7 +1,9 @@
 Filter
 ======
 
-[![Build Status](https://travis-ci.org/SugiPHP/Filter.png)](https://travis-ci.org/SugiPHP/Filter)
+[![Build Status](https://travis-ci.org/SugiPHP/Filter.png)](https://travis-ci.org/SugiPHP/Filter) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/ba950cdd-4b73-428f-941a-b3ba94d0332a/mini.png)](https://insight.sensiolabs.com/projects/ba950cdd-4b73-428f-941a-b3ba94d0332a)
+
+
 
 Simple filter helper functions.
 

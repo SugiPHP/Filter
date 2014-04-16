@@ -37,11 +37,11 @@ class Filter
 		if (!is_null($max) && ($max !== false)) $options["options"]["max_range"] = $max;
 
 		// We really DO NOT need to validate user inputs like 010 or 0x10
+		// so this is not needed: $options["flags"] = FILTER_FLAG_ALLOW_OCTAL | FILTER_FLAG_ALLOW_HEX;
 		// If in the code we use something like $this->int(010) this is the
 		// same as $this->int(8) - so it will pass and return 8
 		// But if we read it from user input, a file etc, it should fail by
 		// default. Example - right padding some currencies like 0010.00 USD
-		// $options["flags"] = FILTER_FLAG_ALLOW_OCTAL | FILTER_FLAG_ALLOW_HEX;
 		return filter_var($value, FILTER_VALIDATE_INT, $options);
 	}
 
