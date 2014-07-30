@@ -145,7 +145,7 @@ class Filter
 	/**
 	 * Validates key existence in the given array.
 	 *
-	 * @param  mixed $key
+	 * @param  string $key
 	 * @param  array $array
 	 * @param  mixed $default
 	 * @return mixed
@@ -158,8 +158,8 @@ class Filter
 	/**
 	 * Validates $_GET[$key] value.
 	 *
-	 * @param string $key - key parameter of $_GET
-	 * @param mixed $default - return value if filter fails
+	 * @param  string $key - key parameter of $_GET
+	 * @param  mixed $default - return value if filter fails
 	 * @return mixed - string on success ($_GET[$key] value) or $default on failure
 	 */
 	public function get($key, $default = null)

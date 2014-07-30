@@ -1,8 +1,8 @@
 Filter
 ======
 
-[![Build Status](https://travis-ci.org/SugiPHP/Filter.png)](https://travis-ci.org/SugiPHP/Filter) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/ba950cdd-4b73-428f-941a-b3ba94d0332a/mini.png)](https://insight.sensiolabs.com/projects/ba950cdd-4b73-428f-941a-b3ba94d0332a)
-
+[![Build Status](https://travis-ci.org/SugiPHP/Filter.png)](https://travis-ci.org/SugiPHP/Filter)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SugiPHP/Filter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SugiPHP/Filter/?branch=master)
 
 
 Simple filter helper functions.

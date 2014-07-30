@@ -7,7 +7,11 @@
  * @license    http://opensource.org/licenses/mit-license.php (MIT License)
  */
 
+namespace SugiPHP\Filter\Test;
+
 use SugiPHP\Filter\Filter;
+use PHPUnit_Framework_TestCase;
+
 
 class FilterTest extends PHPUnit_Framework_TestCase
 {
