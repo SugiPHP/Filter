@@ -123,6 +123,33 @@ class FilterTest extends PHPUnit_Framework_TestCase
 		);
 	}
 
+	public function testIpv4()
+	{
+		$filter = new Filter();
+
+		$ips = array(
+			"255.255.255.255" => false,
+			"0.0.0.0"         => false,
+			"192.168.1.1"     => false,
+			"173.194.44.3"    => true,
+			"8.8.8.8"         => true,
+			"noip.com"        => false,
+		);
+		foreach ($ips as $ip => $ok) {
+			$res = ($ok) ? $ip : false;
+			$this->assertTrue($filter->ipv4($ip) === $res);
+		}
+
+		foreach ($ips as $ip => $ok) {
+			$res = ($ok) ? $ip : "127.0.0.2";
+			$this->assertTrue($filter->ipv4($ip, "127.0.0.2") === $res);
+		}
+
+		$this->assertSame("192.168.1.1", $filter->ipv4("192.168.1.1", false, true));
+		$this->assertFalse($filter->ipv4("0.0.0.0", false, true));
+		$this->assertSame("0.0.0.0", $filter->ipv4("0.0.0.0", false, true, true));
+	}
+
 	/**
 	 * @dataProvider skypes
 	 */

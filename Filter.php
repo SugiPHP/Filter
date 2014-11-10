@@ -136,6 +136,28 @@ class Filter
 	}
 
 	/**
+	 * Validates an IP address (IPv4 only)
+	 *
+	 * @param  string  $value IP address
+	 * @param  mixed   $default Default value to return if validation fails.
+	 * @param  boolean $acceptPrivate  Accept private addresses like 192.168.0.1
+	 * @param  boolean $acceptReserved Accept reserved addresses like 0.0.0.0
+	 * @return mixed   the given IP address or $default value if validation fails.
+	 */
+	public function ipv4($value, $default = false, $acceptPrivate = false, $acceptReserved = false)
+	{
+		$flags = FILTER_FLAG_IPV4;
+		if (!$acceptPrivate) {
+			$flags |= FILTER_FLAG_NO_PRIV_RANGE;
+		}
+		if (!$acceptReserved) {
+			$flags |= FILTER_FLAG_NO_RES_RANGE;
+		}
+
+		return ($value = filter_var($value, FILTER_VALIDATE_IP, $flags)) ? $value : $default;
+	}
+
+	/**
 	 * Validates Skype names.
 	 * Skype Name must be between 6 and 32 characters.
 	 * It must start with a letter and can contain only letters, numbers,
