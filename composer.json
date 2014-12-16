@@ -17,6 +17,5 @@
         "psr-4": {
             "SugiPHP\\Filter\\": ""
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

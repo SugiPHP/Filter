@@ -1,9 +1,11 @@
 <?php
 /**
- * @package    SugiPHP
- * @subpackage Filter
- * @author     Plamen Popov <tzappa@gmail.com>
- * @license    http://opensource.org/licenses/mit-license.php (MIT License)
+ * SugiPHP Filter Class.
+ * Simple helper functions for filtering input data.
+ *
+ * @package SugiPHP.Filter
+ * @author  Plamen Popov <tzappa@gmail.com>
+ * @license http://opensource.org/licenses/mit-license.php (MIT License)
  */
 
 namespace SugiPHP\Filter;
@@ -23,10 +25,11 @@ class Filter
 	/**
 	 * Validates integer value.
 	 *
-	 * @param  mixed   $value Integer or string
-	 * @param  integer $min
-	 * @param  integer $max
-	 * @param  mixed   $default What to be returned if the filter fails
+	 * @param mixed   $value Integer or string
+	 * @param integer $min
+	 * @param integer $max
+	 * @param mixed   $default What to be returned if the filter fails
+	 *
 	 * @return mixed
 	 */
 	public function int($value, $min = false, $max = false, $default = false)
@@ -54,18 +57,20 @@ class Filter
 	/**
 	 * Validates string value.
 	 *
-	 * @param  string  $value
-	 * @param  integer $minLength
-	 * @param  mixed   $maxLength
-	 * @param  mixed   $default
+	 * @param string  $value
+	 * @param integer $minLength
+	 * @param mixed   $maxLength
+	 * @param mixed   $default
+	 *
 	 * @return mixed
 	 */
 	public function str($value, $minLength = 0, $maxLength = false, $default = false)
 	{
 		$value = trim($value);
 		if ((!empty($minLength) && (mb_strlen($value, $this->encoding) < $minLength)) ||
-			(!empty($maxLength) && (mb_strlen($value, $this->encoding) > $maxLength))) {
-				return $default;
+			(!empty($maxLength) && (mb_strlen($value, $this->encoding) > $maxLength))
+		) {
+			return $default;
 		}
 
 		return (string) $value;
@@ -74,10 +79,11 @@ class Filter
 	/**
 	 * Validates string and is removing tags from it.
 	 *
-	 * @param  string $value
-	 * @param  integer $minLength
-	 * @param  mixed $maxLength
-	 * @param  mixed $default
+	 * @param string $value
+	 * @param integer $minLength
+	 * @param mixed $maxLength
+	 * @param mixed $default
+	 *
 	 * @return mixed
 	 */
 	public function plain($value, $minLength = 0, $maxLength = false, $default = false)
@@ -95,8 +101,9 @@ class Filter
 	 * not localhost
 	 * http://8.8.8.8 is not accepted, it's IP, not URL
 	 *
-	 * @param  string $value - URL to filter
-	 * @param  mixed $default Return value if filter fails
+	 * @param string $value - URL to filter
+	 * @param mixed $default Return value if filter fails
+	 *
 	 * @return mixed
 	 */
 	public function url($value, $default = false)
@@ -116,9 +123,10 @@ class Filter
 	/**
 	 * Validates email.
 	 *
-	 * @param  string $value
-	 * @param  mixed $default - default value to return on validation failure
-	 * @param  boolean $checkMxRecord - check existence of MX record. If check fails default value will be returned.
+	 * @param string $value
+	 * @param mixed $default - default value to return on validation failure
+	 * @param boolean $checkMxRecord - check existence of MX record. If check fails default value will be returned.
+	 *
 	 * @return mixed
 	 */
 	public function email($value, $default = false, $checkMxRecord = false)
@@ -138,10 +146,11 @@ class Filter
 	/**
 	 * Validates an IP address (IPv4 only)
 	 *
-	 * @param  string  $value IP address
-	 * @param  mixed   $default Default value to return if validation fails.
-	 * @param  boolean $acceptPrivate  Accept private addresses like 192.168.0.1
-	 * @param  boolean $acceptReserved Accept reserved addresses like 0.0.0.0
+	 * @param string  $value IP address
+	 * @param mixed   $default Default value to return if validation fails.
+	 * @param boolean $acceptPrivate  Accept private addresses like 192.168.0.1
+	 * @param boolean $acceptReserved Accept reserved addresses like 0.0.0.0
+	 *
 	 * @return mixed   the given IP address or $default value if validation fails.
 	 */
 	public function ipv4($value, $default = false, $acceptPrivate = false, $acceptReserved = false)
@@ -163,8 +172,9 @@ class Filter
 	 * It must start with a letter and can contain only letters, numbers,
 	 * full stop (.), comma (,), dash (-), underscore (_)
 	 *
-	 * @param  string $value Skype name to validate
-	 * @param  mixed $default Return value if filter fails
+	 * @param string $value Skype name to validate
+	 * @param mixed $default Return value if filter fails
+	 *
 	 * @return mixed String on success (value) or $default on failure
 	 */
 	public function skype($value, $default = false)
@@ -175,9 +185,10 @@ class Filter
 	/**
 	 * Validates key existence in the given array.
 	 *
-	 * @param  string $key
-	 * @param  array $array
-	 * @param  mixed $default
+	 * @param string $key
+	 * @param array $array
+	 * @param mixed $default
+	 *
 	 * @return mixed
 	 */
 	public function key($key, $array, $default = null)
@@ -188,8 +199,9 @@ class Filter
 	/**
 	 * Validates $_GET[$key] value.
 	 *
-	 * @param  string $key Key parameter of $_GET
-	 * @param  mixed $default Return value if filter fails
+	 * @param string $key Key parameter of $_GET
+	 * @param mixed $default Return value if filter fails
+	 *
 	 * @return mixed - string on success ($_GET[$key] value) or $default on failure
 	 */
 	public function get($key, $default = null)
@@ -200,8 +212,9 @@ class Filter
 	/**
 	 * Validates $_POST[$key] value.
 	 *
-	 * @param  string $key Key parameter of $_POST
-	 * @param  mixed $default Return value if filter fails
+	 * @param string $key Key parameter of $_POST
+	 * @param mixed $default Return value if filter fails
+	 *
 	 * @return mixed - string on success ($_POST[$key] value) or $default on failure
 	 */
 	public function post($key, $default = null)
@@ -212,8 +225,9 @@ class Filter
 	/**
 	 * Validates $_COOKIE[$key] value.
 	 *
-	 * @param  string $key Key parameter of $_COOKIE
-	 * @param  mixed $default Return value if filter fails
+	 * @param string $key Key parameter of $_COOKIE
+	 * @param mixed $default Return value if filter fails
+	 *
 	 * @return mixed String on success ($_COOKIE[$key] value) or $default on failure
 	 */
 	public function cookie($key, $default = null)
@@ -225,8 +239,9 @@ class Filter
 	/**
 	 * Validates $_SESSION[$key] value.
 	 *
-	 * @param  string $key Key parameter of $_SESSION
-	 * @param  mixed $default Return value if key is not found
+	 * @param string $key Key parameter of $_SESSION
+	 * @param mixed $default Return value if key is not found
+	 *
 	 * @return mixed - string on success ($_SESSION[$key] value) or $default on failure
 	 */
 	public function session($key, $default = null)
@@ -237,10 +252,11 @@ class Filter
 	/**
 	 * Validate string from GET parameter - $_GET["key"].
 	 *
-	 * @param  string $key
-	 * @param  integer $minLength
-	 * @param  mixed $maxLength Integer or false when there is no limit
-	 * @param  mixed $default - default value will be returned if validation fails
+	 * @param string $key
+	 * @param integer $minLength
+	 * @param mixed $maxLength Integer or false when there is no limit
+	 * @param mixed $default - default value will be returned if validation fails
+	 *
 	 * @return mixed
 	 */
 	public function strGet($key, $minLength = 0, $maxLength = false, $default = false)
@@ -251,10 +267,11 @@ class Filter
 	/**
 	 * Validate string from POST paramether - $_POST["key"].
 	 *
-	 * @param  string $key
-	 * @param  integer $minLength
-	 * @param  mixed $maxLength Integer or false when there is no limit
-	 * @param  mixed $default - default value will be returned when validation fails
+	 * @param string $key
+	 * @param integer $minLength
+	 * @param mixed $maxLength Integer or false when there is no limit
+	 * @param mixed $default - default value will be returned when validation fails
+	 *
 	 * @return mixed
 	 */
 	public function strPost($key, $minLength = 0, $maxLength = false, $default = false)
@@ -265,10 +282,11 @@ class Filter
 	/**
 	 * Validate string from COOKIE - $_COOKIE["key"].
 	 *
-	 * @param  string $key
-	 * @param  integer $minLength
-	 * @param  mixed $maxLength Integer or false when there is no limit
-	 * @param  mixed $default - default value will be returned when validation fails
+	 * @param string $key
+	 * @param integer $minLength
+	 * @param mixed $maxLength Integer or false when there is no limit
+	 * @param mixed $default - default value will be returned when validation fails
+	 *
 	 * @return mixed
 	 */
 	public function strCookie($key, $minLength = 0, $maxLength = false, $default = false)
@@ -279,10 +297,11 @@ class Filter
 	/**
 	 * Validate string from $_SESSION["key"].
 	 *
-	 * @param  string $key
-	 * @param  integer $minLength
-	 * @param  mixed $maxLength Integer or false when there is no limit
-	 * @param  mixed $default - default value will be returned when validation fails
+	 * @param string $key
+	 * @param integer $minLength
+	 * @param mixed $maxLength Integer or false when there is no limit
+	 * @param mixed $default - default value will be returned when validation fails
+	 *
 	 * @return mixed
 	 */
 	public function strSession($key, $minLength = 0, $maxLength = false, $default = false)
@@ -293,10 +312,11 @@ class Filter
 	/**
 	 * Validates plain text from GET paramether - $_GET["key"].
 	 *
-	 * @param  string $key
-	 * @param  integer $minLength
-	 * @param  mixed $maxLength Integer or false when there is no limit
-	 * @param  mixed $default - default value will be returned when validation fails
+	 * @param string $key
+	 * @param integer $minLength
+	 * @param mixed $maxLength Integer or false when there is no limit
+	 * @param mixed $default - default value will be returned when validation fails
+	 *
 	 * @return mixed
 	 */
 	public function plainGet($key, $minLength = 0, $maxLength = false, $default = false)
@@ -307,10 +327,11 @@ class Filter
 	/**
 	 * Validates plain text from POST paramether - $_POST["key"].
 	 *
-	 * @param  string $key
-	 * @param  integer $minLength
-	 * @param  mixed $maxLength Integer or false when there is no limit
-	 * @param  mixed $default - default value will be returned when validation fails
+	 * @param string $key
+	 * @param integer $minLength
+	 * @param mixed $maxLength Integer or false when there is no limit
+	 * @param mixed $default - default value will be returned when validation fails
+	 *
 	 * @return mixed
 	 */
 	public function plainPost($key, $minLength = 0, $maxLength = false, $default = false)
@@ -321,10 +342,11 @@ class Filter
 	/**
 	 * Validates plain text from COOKIE - $_COOKIE["key"].
 	 *
-	 * @param  string $key
-	 * @param  integer $minLength
-	 * @param  mixed $maxLength Integer or false when there is no limit
-	 * @param  mixed $default - default value will be returned when validation fails
+	 * @param string $key
+	 * @param integer $minLength
+	 * @param mixed $maxLength Integer or false when there is no limit
+	 * @param mixed $default - default value will be returned when validation fails
+	 *
 	 * @return mixed
 	 */
 	public function plainCookie($key, $minLength = 0, $maxLength = false, $default = false)
@@ -335,10 +357,11 @@ class Filter
 	/**
 	 * Validates plain text from $_SESSION["key"].
 	 *
-	 * @param  string $key
-	 * @param  integer $minLength
-	 * @param  mixed $maxLength Integer or false when there is no limit
-	 * @param  mixed $default - default value will be returned when validation fails
+	 * @param string $key
+	 * @param integer $minLength
+	 * @param mixed $maxLength Integer or false when there is no limit
+	 * @param mixed $default - default value will be returned when validation fails
+	 *
 	 * @return mixed
 	 */
 	public function plainSession($key, $minLength = 0, $maxLength = false, $default = false)
@@ -349,11 +372,12 @@ class Filter
 	/**
 	 * Validate integer from GET parameter - $_GET["key"].
 	 *
-	 * @param  string $key
-	 * @param  mixed $minRange Integer or false not to check
-	 * @param  mixed $maxRange Integer or false when there is no limit
-	 * @param  mixed $default Integer will be returned when validation succeeds,
-	 *         or default value of failure
+	 * @param string $key
+	 * @param mixed $minRange Integer or false not to check
+	 * @param mixed $maxRange Integer or false when there is no limit
+	 * @param mixed $default Integer will be returned when validation succeeds,
+	 *        or default value of failure
+	 *
 	 * @return mixed
 	 */
 	public function intGet($key, $minRange = false, $maxRange = false, $default = false)
@@ -364,11 +388,12 @@ class Filter
 	/**
 	 * Validate integer from POST parameter - $_POST["key"].
 	 *
-	 * @param  string $key
-	 * @param  mixed $minRange Integer or false not to check
-	 * @param  mixed $maxRange Integer or false when there is no limit
-	 * @param  mixed $default Integer will be returned when validation succeeds,
-	 *         or default value of failure
+	 * @param string $key
+	 * @param mixed $minRange Integer or false not to check
+	 * @param mixed $maxRange Integer or false when there is no limit
+	 * @param mixed $default Integer will be returned when validation succeeds,
+	 *        or default value of failure
+	 *
 	 * @return mixed
 	 */
 	public function intPost($key, $minRange = false, $maxRange = false, $default = false)
@@ -379,11 +404,12 @@ class Filter
 	/**
 	 * Validate integer from COOKIE - $_COOKIE["key"].
 	 *
-	 * @param  string $key
-	 * @param  mixed $minRange Integer or false not to check
-	 * @param  mixed $maxRange Integer or false when there is no limit
-	 * @param  mixed $default Integer will be returned when validation succeeds,
-	 *         or default value of failure
+	 * @param string $key
+	 * @param mixed $minRange Integer or false not to check
+	 * @param mixed $maxRange Integer or false when there is no limit
+	 * @param mixed $default Integer will be returned when validation succeeds,
+	 *        or default value of failure
+	 *
 	 * @return mixed
 	 */
 	public function intCookie($key, $minRange = false, $maxRange = false, $default = false)
@@ -394,11 +420,12 @@ class Filter
 	/**
 	 * Validate integer from $_SESSION["key"].
 	 *
-	 * @param  string $key
-	 * @param  mixed $minRange Integer or false not to check
-	 * @param  mixed $maxRange Integer or false when there is no limit
-	 * @param  mixed $default Integer will be returned when validation succeeds,
-	 *         or default value of failure
+	 * @param string $key
+	 * @param mixed $minRange Integer or false not to check
+	 * @param mixed $maxRange Integer or false when there is no limit
+	 * @param mixed $default Integer will be returned when validation succeeds,
+	 *        or default value of failure
+	 *
 	 * @return mixed
 	 */
 	public function intSession($key, $minRange = false, $maxRange = false, $default = false)

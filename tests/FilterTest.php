@@ -1,10 +1,10 @@
 <?php
 /**
- * @package    SugiPHP
- * @subpackage Filter
- * @category   tests
- * @author     Plamen Popov <tzappa@gmail.com>
- * @license    http://opensource.org/licenses/mit-license.php (MIT License)
+ * PHP Unit tests for Filter Class.
+ *
+ * @package SugiPHP.Filter
+ * @author  Plamen Popov <tzappa@gmail.com>
+ * @license http://opensource.org/licenses/mit-license.php (MIT License)
  */
 
 namespace SugiPHP\Filter;
@@ -53,17 +53,17 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider URLs
+	 * @dataProvider urlProvider
 	 */
-	public function testURLs($url, $ok)
+	public function testURLs($url, $passing)
 	{
 		$filter = new Filter();
 
-		$res = $ok ? $url : false;
+		$res = $passing ? $url : false;
 		$this->assertTrue($filter->url($url) === $res);
 	}
 
-	public function URLs()
+	public function urlProvider()
 	{
 		return array (
 			array("igrivi.com", false),
@@ -103,11 +103,11 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider emails
 	 */
-	public function testEmails($email, $ok)
+	public function testEmails($email, $passing)
 	{
 		$filter = new Filter();
 
-		$res = $ok ? $email : false;
+		$res = $passing ? $email : false;
 		$this->assertTrue($filter->email($email) === $res);
 	}
 
@@ -135,13 +135,13 @@ class FilterTest extends PHPUnit_Framework_TestCase
 			"8.8.8.8"         => true,
 			"noip.com"        => false,
 		);
-		foreach ($ips as $ip => $ok) {
-			$res = ($ok) ? $ip : false;
+		foreach ($ips as $ip => $passing) {
+			$res = ($passing) ? $ip : false;
 			$this->assertTrue($filter->ipv4($ip) === $res);
 		}
 
-		foreach ($ips as $ip => $ok) {
-			$res = ($ok) ? $ip : "127.0.0.2";
+		foreach ($ips as $ip => $passing) {
+			$res = ($passing) ? $ip : "127.0.0.2";
 			$this->assertTrue($filter->ipv4($ip, "127.0.0.2") === $res);
 		}
 
@@ -153,11 +153,11 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider skypes
 	 */
-	public function testSkype($skype, $ok)
+	public function testSkype($skype, $passing)
 	{
 		$filter = new Filter();
 
-		$res = $ok ? $skype : false;
+		$res = $passing ? $skype : false;
 		$this->assertTrue($filter->skype($skype) === $res);
 	}
 
